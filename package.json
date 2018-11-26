@@ -1,0 +1,11 @@
+{
+  "name": "serverless-offline-http-mock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:pianomansam/serverless-offline-http-mock.git",
+  "author": "Samuel Oltz <***REMOVED***>",
+  "license": "MIT",
+  "dependencies": {
+    "nock": "^10.0.2"
+  }
+}
