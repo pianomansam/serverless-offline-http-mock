@@ -30,8 +30,8 @@ class ServerlessPlugin {
 
       mock.mocks.forEach(mockPath => {
         this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
-        const mock = require(path.join(this.serverless.config.servicePath, mock.directory, mockPath));
-        mock(nock, mock.endpoint);
+        const fn = require(path.join(this.serverless.config.servicePath, mock.directory, mockPath));
+        fn(nock, mock.endpoint);
       });
     });
   }
