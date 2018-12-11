@@ -14,19 +14,25 @@ class ServerlessPlugin {
   }
 
   startHandler() {
-    if (this.options.mocks.length) {
-      if (this.options.endpoint === undefined) {
-        throw new Error('Offline HTTP Mock: No endpoint defined');
-      }
-      if (this.options.directory === undefined) {
-        throw new Error('Offline HTTP Mock: No directory defined');
-      }
+    if (!this.options.length) {
+      return;
     }
 
-    this.options.mocks.forEach(mockPath => {
-      this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
-      const mock = require(path.join(this.serverless.config.servicePath, this.options.directory, mockPath));
-      mock(nock, this.options.endpoint);
+    this.options.forEach(mock => {
+      if (mock.mocks.length) {
+        if (mock.endpoint === undefined) {
+          throw new Error('Offline HTTP Mock: No endpoint defined');
+        }
+        if (mock.directory === undefined) {
+          throw new Error('Offline HTTP Mock: No directory defined');
+        }
+      }
+
+      mock.mocks.forEach(mockPath => {
+        this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
+        const mock = require(path.join(this.serverless.config.servicePath, mock.directory, mockPath));
+        mock(nock, mock.endpoint);
+      });
     });
   }
 
