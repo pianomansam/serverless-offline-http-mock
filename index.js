@@ -14,7 +14,7 @@ class ServerlessPlugin {
   }
 
   startHandler() {
-    if (!this.options || !this.options.length) {
+    if (this.options === undefined || !this.options || !this.options.length) {
       return;
     }
 
