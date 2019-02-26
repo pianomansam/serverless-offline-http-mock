@@ -5,7 +5,7 @@ const nock = require('nock');
 class ServerlessPlugin {
   constructor(serverless, options) {
     this.serverless = serverless;
-    this.options = (serverless.service.custom || {})["appsync-offline-http-mock"];
+    this.options = (serverless.service.custom || {})["serverless-offline-http-mock"];
 
     this.hooks = {
       "before:offline:start:init": this.startHandler.bind(this),
@@ -14,7 +14,7 @@ class ServerlessPlugin {
   }
 
   startHandler() {
-    if (!this.options.length) {
+    if (!this.options || !this.options.length) {
       return;
     }
 
