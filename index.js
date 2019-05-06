@@ -1,10 +1,9 @@
-const path = require('path');
-const nock = require('nock');
+const mock = require('./mock');
 
 class ServerlessPlugin {
   constructor(serverless) {
     this.serverless = serverless;
-    this.options = (serverless.service.custom || {})[
+    this.items = (serverless.service.custom || {})[
       'serverless-offline-http-mock'
     ];
 
@@ -15,27 +14,36 @@ class ServerlessPlugin {
   }
 
   startHandler() {
-    if (this.options === undefined || !this.options || !this.options.length) {
+    if (this.items === undefined || !this.items || !this.items.length) {
       return;
     }
 
-    this.options.forEach(option => {
-      if (option.mocks.length) {
-        if (option.hostname === undefined) {
-          throw new Error('Offline HTTP Mock: No hostname defined');
-        }
-      }
+    this.items.forEach(item => {
+      mock.validate(item);
 
-      option.mocks.forEach(mockPath => {
-        this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
-        const file = path.join(
-          this.serverless.config.servicePath,
-          option.directory,
-          mockPath,
-        );
-        // eslint-disable-next-line import/no-dynamic-require
-        const fn = require(file);
-        fn(nock, option.hostname);
+      // if (!item.mocks.length) {
+      //   throw new Error('Offline HTTP Mock: No mocks defined!');
+      // }
+
+      // if (item.hostname === undefined) {
+      //   throw new Error('Offline HTTP Mock: No hostname defined!');
+      // }
+
+      const { servicePath } = this.serverless.config;
+      const { log } = this.serverless.cli;
+
+      item.mocks.forEach(mockPath => {
+        // this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
+        // const file = path.join(
+        //   this.serverless.config.servicePath,
+        //   option.directory,
+        //   mockPath,
+        // );
+        // // eslint-disable-next-line import/no-dynamic-require
+        // const fn = require(file);
+        // fn(nock, option.hostname);
+
+        mock.start({ mock, log, servicePath, mockPath });
       });
     });
   }
