@@ -32,7 +32,7 @@ class ServerlessPlugin {
       const { servicePath } = this.serverless.config;
       const { log } = this.serverless.cli;
 
-      item.mocks.forEach(mockPath => {
+      item.mocks.forEach(filename => {
         // this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
         // const file = path.join(
         //   this.serverless.config.servicePath,
@@ -43,7 +43,7 @@ class ServerlessPlugin {
         // const fn = require(file);
         // fn(nock, option.hostname);
 
-        mock.start({ mock, log, servicePath, mockPath });
+        mock.start({ mock, log, servicePath, filename });
       });
     });
   }
