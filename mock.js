@@ -13,14 +13,18 @@ const validate = item => {
   return true;
 };
 
-const start = ({ mock, log, servicePath, mockPath }) => {
-  const { hostname, directory } = mock;
+const start = ({ mock, log, servicePath, filename }) => {
+  const { hostname, directory = null } = mock;
 
-  log(`Loading HTTP mocks in ${mockPath}`);
-  const file = path.join(servicePath, directory, mockPath);
+  log(`Loading HTTP mocks in ${filename}`);
+  const file = path.join(servicePath, directory, filename);
   // eslint-disable-next-line import/no-dynamic-require
   const fn = require(file);
-  fn(nock, hostname);
+
+  if (typeof fn !== 'function') {
+    throw new Error(`Offline HTTP Mock: ${file} did not return a function!`);
+  }
+  return fn(nock, hostname);
 };
 
 module.exports = {

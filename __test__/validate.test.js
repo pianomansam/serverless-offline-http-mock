@@ -1,4 +1,4 @@
-const mock = require('./mock');
+const mock = require('../mock');
 
 test('valid mock passes', () => {
   const validMock = {
