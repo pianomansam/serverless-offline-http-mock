@@ -3,7 +3,7 @@
 
 ## Overview
 
-This is a plugin to for the [serverless framework](https://www.npmjs.com/package/serverless) that provides the ability to create mock responses to HTTP(S) requests. This is useful when developing integration against an API spec that doesn't yet exist. This plugin uses [nock](https://www.npmjs.com/package/nock) to provide mock responses. It supports mock requests for:
+This is a plugin for the [serverless framework](https://www.npmjs.com/package/serverless) that provides the ability to create mock responses to HTTP(S) requests. This is useful when developing integration against an API spec that doesn't yet exist. This plugin uses [nock](https://www.npmjs.com/package/nock) to provide mock responses. It supports mock requests for:
 
 - API Gateway Lambda functions
 - Local Invoke Lambda functions
