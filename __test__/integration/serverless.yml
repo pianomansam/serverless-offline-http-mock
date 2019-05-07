@@ -1,0 +1,24 @@
+service: serverless-offline-http-mock-test
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  example:
+    handler: example.get
+    events:
+      - http:
+          path: example
+          method: get
+
+custom:
+  serverless-offline-http-mock:
+    - hostname: http://www.example.com
+      directory: 'mocks' # Optional
+      mocks:
+        - example.js
+
+plugins:
+  - serverless-offline-http-mock
+  - serverless-offline
