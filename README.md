@@ -5,16 +5,21 @@
 serverless.yml:
 ```yaml
 ...
-serverless-offline-http-mock:
-  - hostname: https://example.com
-    directory: 'mocks' # Optional
-    mocks:
-      - example.js
+custom:
+  serverless-offline-http-mock:
+    - hostname: https://example-1234567890.com
+      directory: 'mocks' # Optional
+      mocks:
+        - example.js
+
+plugins:
+  - serverless-offline-http-mock # Note how this comes before serverless-offline
+  - serverless-offline
 ```
 
 mocks/example.js:
 ```javascript
-const mocks = (nock, hostname) => 
+const mocks = (nock, hostname) =>
   nock(hostname)
     .persist()
     .get('/')

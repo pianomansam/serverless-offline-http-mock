@@ -13,10 +13,9 @@ const validate = item => {
   return true;
 };
 
-const start = ({ mock, log, servicePath, filename }) => {
-  const { hostname, directory = null } = mock;
+const start = ({ item, servicePath, filename }) => {
+  const { hostname, directory = null } = item;
 
-  log(`Loading HTTP mocks in ${filename}`);
   const file = path.join(servicePath, directory, filename);
   // eslint-disable-next-line import/no-dynamic-require
   const fn = require(file);

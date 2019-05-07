@@ -9,6 +9,7 @@ class ServerlessPlugin {
 
     this.hooks = {
       'before:offline:start:init': this.startHandler.bind(this),
+      'before:invoke:local:invoke': this.startHandler.bind(this),
       'before:appsync-offline:start:startHandler': this.startHandler.bind(this),
     };
   }
@@ -20,30 +21,11 @@ class ServerlessPlugin {
 
     this.items.forEach(item => {
       mock.validate(item);
-
-      // if (!item.mocks.length) {
-      //   throw new Error('Offline HTTP Mock: No mocks defined!');
-      // }
-
-      // if (item.hostname === undefined) {
-      //   throw new Error('Offline HTTP Mock: No hostname defined!');
-      // }
-
       const { servicePath } = this.serverless.config;
-      const { log } = this.serverless.cli;
 
       item.mocks.forEach(filename => {
-        // this.serverless.cli.log(`Loading HTTP mocks in ${mockPath}`);
-        // const file = path.join(
-        //   this.serverless.config.servicePath,
-        //   option.directory,
-        //   mockPath,
-        // );
-        // // eslint-disable-next-line import/no-dynamic-require
-        // const fn = require(file);
-        // fn(nock, option.hostname);
-
-        mock.start({ mock, log, servicePath, filename });
+        this.serverless.cli.log(`Loading HTTP mocks in ${filename}`);
+        mock.start({ item, servicePath, filename });
       });
     });
   }
