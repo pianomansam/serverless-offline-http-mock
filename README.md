@@ -52,6 +52,6 @@ const mocks = (nock, hostname) =>
   nock(hostname)
     .persist()
     .get('/')
-	.reply(200, 'success!');
+    .reply(200, 'success!');
 module.exports = mocks;
 ```
