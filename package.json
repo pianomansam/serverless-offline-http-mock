@@ -27,5 +27,20 @@
   "bugs": {
     "url": "https://github.com/pianomansam/serverless-offline-http-mock/issues"
   },
-  "homepage": "https://github.com/pianomansam/serverless-offline-http-mock#readme"
+  "homepage": "https://github.com/pianomansam/serverless-offline-http-mock#readme",
+  "keywords": [
+    "serverless framework plugin",
+    "serverless applications",
+    "serverless plugins",
+    "api gateway",
+    "lambda",
+    "amazon",
+    "amazon web services",
+    "serverless.com",
+    "Serverless",
+    "Amazon Web Services",
+    "AWS",
+    "Lambda",
+    "API Gateway"
+  ]
 }
