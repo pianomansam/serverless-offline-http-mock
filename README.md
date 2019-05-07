@@ -5,13 +5,13 @@
 
 This is a plugin for the [serverless framework](https://www.npmjs.com/package/serverless) that provides the ability to create mock responses to HTTP(S) requests. This is useful when developing integration against an API spec that doesn't yet exist. This plugin uses [nock](https://www.npmjs.com/package/nock) to provide mock responses. It supports mock requests for:
 
-- API Gateway Lambda functions
-- Local Invoke Lambda functions
-- [Appsync Offline](https://www.npmjs.com/package/serverless-appsync-offline) data sources
+- Local Invoke Lambda calls
+- [Serverless Offline](https://www.npmjs.com/package/serverless-offline) API Gateway Lambda calls
+- [Serverless Appsync Offline](https://www.npmjs.com/package/serverless-appsync-offline) data sources
 
 ## Requirements
 
-An existing serverless framework project with [serverless offline](https://www.npmjs.com/package/serverless-offline) installed.
+An existing serverless framework project.
 
 ## Installation
 ```
@@ -23,7 +23,9 @@ yarn add serverless-offline-http-mock
 ```
 
 ## Usage
-1. Within the `serverless.yml` file, enable the plugin by placing an `serverless-offline-http-mock` entry in the plugins section. **Make sure it is placed above the `serverless-offline` plugin**
+1. Within the `serverless.yml` file, enable the plugin by placing an `serverless-offline-http-mock` entry in the plugins section. 
+**If using Serverless Offline, make sure it is placed above the `serverless-offline` plugin**
+
 2. Create a `serverless-offline-http-mock` entry in the `custom` section.
 3. For each host, create an entry containing hostname, a list of JS files to load, and an optional directory. See `serverless.yml` example below.
 4. In each JS file, export a function that accepts the nock library and hostname as arguments. Within that function, implement nock to handle the HTTP(S) requests. See `example.js` example below.
@@ -54,4 +56,9 @@ const mocks = (nock, hostname) =>
     .get('/')
     .reply(200, 'success!');
 module.exports = mocks;
+```
+
+## Development
+```
+yarn test
 ```
