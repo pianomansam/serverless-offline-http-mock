@@ -8,6 +8,7 @@ class ServerlessPlugin {
     ];
 
     this.hooks = {
+      'before:offline:start': this.startHandler.bind(this),
       'before:offline:start:init': this.startHandler.bind(this),
       'before:invoke:local:invoke': this.startHandler.bind(this),
       'before:appsync-offline:start:startHandler': this.startHandler.bind(this),
