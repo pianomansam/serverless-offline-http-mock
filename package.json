@@ -10,13 +10,13 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^4.2.0",
+    "eslint": "^7.0",
+    "eslint-config-airbnb-base": "^14.0",
+    "eslint-config-prettier": "^6.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-prettier": "^3.0.1",
-    "jest": "^24.8.0",
-    "jest-runner-eslint": "^0.7.3",
+    "jest": "^26.0",
+    "jest-runner-eslint": "^0.7.0",
     "prettier": "^1.17.0"
   },
   "scripts": {
