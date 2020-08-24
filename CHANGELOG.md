@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.3] - 2020-08-24
 
+### Changed
+
+- Optimize NPM packaging size.
+
+## [0.0.3] - 2020-08-24
+
 ### Fixed
 
 - Mocks aren't created if running command `sls offline` [#12](https://github.com/pianomansam/serverless-offline-http-mock/issues/12)
