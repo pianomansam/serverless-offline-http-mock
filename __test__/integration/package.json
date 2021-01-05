@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "serverless": "^1.41.1",
     "serverless-offline": "^4.10.0",
     "serverless-offline-http-mock": "file:../../"
