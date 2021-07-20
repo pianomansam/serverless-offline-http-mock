@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:pianomansam/serverless-offline-http-mock.git",
-  "author": "Samuel Oltz <pianomansam@gmail.com>",
+  "author": "Samuel Oltz",
   "license": "MIT",
   "dependencies": {
     "nock": "^13.0"
