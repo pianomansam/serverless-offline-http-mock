@@ -23,7 +23,7 @@ yarn add serverless-offline-http-mock
 ```
 
 ## Upgrade to v1.0.0
-Please note that if you installed a version of this prior to v1.0.0, you will need to follow step #2 below and add a truthy `serverless-offline-http-mock-enabled` value in order for your mockups to be loaded.
+Please note that if you installed a version of this prior to v1.0.0, you will need to follow step #2 below and add a truthy `serverless-offline-http-mock-enabled` value in order for your mocks to be loaded.
 
 ## Usage
 1. Within the `serverless.yml` file, enable the plugin by placing an `serverless-offline-http-mock` entry in the plugins section.
