@@ -2,7 +2,7 @@ service: serverless-offline-http-mock-test
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs16.x
 
 functions:
   example:
@@ -13,6 +13,7 @@ functions:
           method: get
 
 custom:
+  serverless-offline-http-mock-enabled: 1
   serverless-offline-http-mock:
     - hostname: http://www.example.com
       directory: 'mocks' # Optional

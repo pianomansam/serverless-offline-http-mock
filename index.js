@@ -3,6 +3,9 @@ const mock = require('./mock');
 class ServerlessPlugin {
   constructor(serverless) {
     this.serverless = serverless;
+    this.enabled = !!(serverless.service.custom || {
+      'serverless-offline-http-mock-enabled': false,
+    })['serverless-offline-http-mock-enabled'];
     this.items = (serverless.service.custom || {})[
       'serverless-offline-http-mock'
     ];
@@ -16,15 +19,20 @@ class ServerlessPlugin {
   }
 
   startHandler() {
-    if (this.items === undefined || !this.items || !this.items.length) {
+    if (
+      !this.enabled ||
+      this.items === undefined ||
+      !this.items ||
+      !this.items.length
+    ) {
       return;
     }
 
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       mock.validate(item);
       const { servicePath } = this.serverless.config;
 
-      item.mocks.forEach(filename => {
+      item.mocks.forEach((filename) => {
         this.serverless.cli.log(`Loading HTTP mocks in ${filename}`);
         mock.start({ item, servicePath, filename });
       });
