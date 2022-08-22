@@ -1,7 +1,7 @@
 const path = require('path');
 const nock = require('nock');
 
-const validate = item => {
+const validate = (item) => {
   if (item.mocks === undefined || !item.mocks.length) {
     throw new Error('Offline HTTP Mock: No mocks defined!');
   }

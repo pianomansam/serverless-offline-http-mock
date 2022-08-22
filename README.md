@@ -15,20 +15,24 @@ An existing serverless framework project.
 
 ## Installation
 ```
-npm install serverless-offline-http-mock 
+npm install serverless-offline-http-mock
 ```
 OR
 ```
 yarn add serverless-offline-http-mock
 ```
 
+## Upgrade to v1.0.0
+Please note that if you installed a version of this prior to v1.0.0, you will need to follow step #2 below and add a truthy `serverless-offline-http-mock-enabled` value in order for your mockups to be loaded.
+
 ## Usage
-1. Within the `serverless.yml` file, enable the plugin by placing an `serverless-offline-http-mock` entry in the plugins section. 
+1. Within the `serverless.yml` file, enable the plugin by placing an `serverless-offline-http-mock` entry in the plugins section.
 **If using Serverless Offline, make sure it is placed above the `serverless-offline` plugin**
 
-2. Create a `serverless-offline-http-mock` entry in the `custom` section.
-3. For each host, create an entry containing hostname, a list of JS files to load, and an optional directory. See `serverless.yml` example below.
-4. In each JS file, export a function that accepts the nock library and hostname as arguments. Within that function, implement nock to handle the HTTP(S) requests. See `example.js` example below.
+2. Create a `serverless-offline-http-mock-enabled` entry in the `custom` section with a truthy (true, 1, etc) or falsy value (false, 0, etc). You can also use environment variables (for example, `${env:MOCK_ENABLED}`).
+3. Create a `serverless-offline-http-mock` entry in the `custom` section.
+4. For each host, create an entry containing hostname, a list of JS files to load, and an optional directory. See `serverless.yml` example below.
+5. In each JS file, export a function that accepts the nock library and hostname as arguments. Within that function, implement nock to handle the HTTP(S) requests. See `example.js` example below.
 
 
 ## Example
@@ -37,6 +41,7 @@ serverless.yml:
 ```yaml
 ...
 custom:
+  serverless-offline-http-mock-enabled: 1
   serverless-offline-http-mock:
     - hostname: http://www.example.com
       directory: 'mocks' # Optional
