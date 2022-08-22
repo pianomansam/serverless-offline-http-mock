@@ -23,6 +23,10 @@
     "test": "yarn jest --coverage",
     "lint": "yarn eslint ."
   },
+  "files": [
+    "index.js",
+    "mock.js"
+  ],
   "description": "This is a plugin for the serverless framework that provides the ability to create mock responses to HTTP(S) requests.",
   "bugs": {
     "url": "https://github.com/pianomansam/serverless-offline-http-mock/issues"
