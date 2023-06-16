@@ -11,7 +11,11 @@ This is a plugin for the [serverless framework](https://www.npmjs.com/package/se
 
 ## Requirements
 
-An existing serverless framework project.
+A serverless framework project that uses [`useInProcess`](https://github.com/dherault/serverless-offline#useinprocess) to run Lambda handlers. 
+
+**Running handlers in worker threads or Docker containers is not supported.**
+
+In order to intercept HTTP calls when using `serverless-offline` worker threads or Docker containers, you must go the old-school route and manually return mock data in your code.
 
 ## Installation
 ```
